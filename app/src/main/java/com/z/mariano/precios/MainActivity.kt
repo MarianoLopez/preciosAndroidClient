@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.z.mariano.precios.Fragments.ConfigFragment
 import com.z.mariano.precios.Fragments.QueryFragment
+import com.z.mariano.precios.Fragments.ScanFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,22 +23,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        override fun getItem(position: Int): Fragment? {
-            return when (position) {
-                0 -> QueryFragment()
-                1 -> ConfigFragment()
-                else -> null
-            }
-        }
+        private val fragments = arrayListOf(Pair("Escanear",ScanFragment()),
+                                            Pair("Por nombre",QueryFragment()),
+                                            Pair("Configuración",ConfigFragment()))
 
-        override fun getCount(): Int { return 2 }
+        override fun getItem(position: Int) = fragments[position].second
 
-        override fun getPageTitle(position: Int): CharSequence? {
-            return when (position) {
-                0 ->  "Consultas"
-                1 ->  "Configuración"
-                else -> null
-            }
-        }
+        override fun getCount() = fragments.size
+
+        override fun getPageTitle(position: Int) = fragments[position].first
     }
 }

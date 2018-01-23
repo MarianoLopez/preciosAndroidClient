@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">precios</string>
+    <string name="api_server_ip">serverIP</string>
+    <string name="default_api_server_ip">192.168.0.2</string>
 </resources>
